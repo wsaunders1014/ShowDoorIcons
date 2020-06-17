@@ -63,8 +63,8 @@ WallsLayer.prototype.activate = function(){
 Hooks.once('init',()=>{
 
   game.settings.register('showdooricons', 'enabled', {
-      name: "showdooricons.force-doors-s",
-      hint: "showdooricons.force-doors-l",
+      name: "sdi.force-doors-s",
+      hint: "sdi.force-doors-l",
       scope: "world",
       config: true,
       default: true,
