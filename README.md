@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Foundry-v0.7.9-informational)
+
 # ShowDoorIcons
 
 Forces Door Controls to remain visible on the Wall Layer. 

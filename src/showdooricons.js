@@ -97,7 +97,7 @@ Hooks.once('ready', () => {
   }
 
   libWrapper.register(MODULE_NAME, 'ControlsLayer.prototype.drawDoors', ControlsLayerPrototypeDrawDoorsHandler, 'WRAPPER');
-  libWrapper.register(MODULE_NAME, 'Wall.prototype._onModifyWall', WallPrototypeOnModifyWallHandler, 'WRAPPER');
+  //libWrapper.register(MODULE_NAME, 'Wall.prototype._onModifyWall', WallPrototypeOnModifyWallHandler, 'WRAPPER');
   libWrapper.register(MODULE_NAME, 'WallsLayer.prototype.activate', WallsLayerPrototypeActivate, 'WRAPPER');
 
 });
@@ -140,30 +140,30 @@ export const ControlsLayerPrototypeDrawDoorsHandler = async function (wrapped, .
   return wrapped(...args);
 };
 
-export const WallPrototypeOnModifyWallHandler = async function (wrapped, ...args) {
-  if(getCanvas()){
-    const state = args[0];
-    getCanvas().addPendingOperation("ControlsLayer.drawDoors", getCanvas().controls.drawDoors, getCanvas().controls);
-    if ( state ) {
-      // TODO CHECK IF IS STILL NEEDED 'Unexpected reserved word'
-      //if(canvas.sight.children){
-      //  await getCanvas().sight.initialize(); // This needs to happen first to rebuild FOV/LOS polygons
-      //}
-      //getCanvas().lighting.initialize();
-      await getCanvas().lighting.releaseAll()
-      getCanvas().sounds.initialize();
-    }
-    getCanvas().triggerPendingOperations();
-  }
-  // ???????????????
-  if(!getCanvas().controls.doors){
-    getCanvas().controls.doors = {};
-  }
-  if(!getCanvas().controls.doors.children){
-    getCanvas().controls.doors.children = [];
-  }
-  return wrapped(...args);
-}
+// THERE IS SOME STRANGE NOT RESOLVABLE ERROR BUT IT?S SEEMS NOT NEEDED FOPR THE SCOPE OF THE MODULE
+// export const WallPrototypeOnModifyWallHandler = async function (wrapped, ...args) {
+//   if(getCanvas()){
+//     const state = args[0];
+//     getCanvas().addPendingOperation("ControlsLayer.drawDoors", getCanvas().controls.drawDoors, getCanvas().controls);
+//     if ( state ) {
+//       //if(canvas.sight.children){
+//       //  await getCanvas().sight.initialize(); // This needs to happen first to rebuild FOV/LOS polygons
+//       //}
+//       //getCanvas().lighting.initialize();
+//       await getCanvas().lighting.releaseAll()
+//       getCanvas().sounds.initialize();
+//     }
+//     getCanvas().triggerPendingOperations();
+//   }
+//   // ???????????????
+//   if(!getCanvas().controls.doors){
+//     getCanvas().controls.doors = {};
+//   }
+//   if(!getCanvas().controls.doors.children){
+//     getCanvas().controls.doors.children = [];
+//   }
+//   return wrapped(...args);
+// }
 
 //Overwrite Activate call to prevent doors from going invisible.
 export const WallsLayerPrototypeActivate = function (wrapped, ...args) {
