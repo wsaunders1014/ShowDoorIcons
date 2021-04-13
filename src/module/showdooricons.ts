@@ -10,22 +10,22 @@
  * 					 determines how others may use and modify your module
  */
 // Import JavaScript modules
-// import {libWrapper} from './module/libs/shim.js';
+//import {libWrapper} from 'lib-wrapper';
 // Import TypeScript modules
 
 export const MODULE_NAME = "showdooricons";
 
 /**
- * Because typescript doesn’t know when in the lifecycle of foundry your code runs, we have to assume that the
- * canvas is potentially not yet initialized, so it’s typed as declare let canvas: Canvas | {ready: false}.
- * That’s why you get errors when you try to access properties on canvas other than ready.
+ * Because typescript doesn't know when in the lifecycle of foundry your code runs, we have to assume that the
+ * canvas is potentially not yet initialized, so it's typed as declare let canvas: Canvas | {ready: false}.
+ * That's why you get errors when you try to access properties on canvas other than ready.
  * In order to get around that, you need to type guard canvas.
- * Also be aware that this will become even more important in 0.8.x because a „no canvas“ mode is being introduced there.
+ * Also be aware that this will become even more important in 0.8.x because no canvas mode is being introduced there.
  * So you will need to deal with the fact that there might not be an initialized canvas at any point in time.
  * @returns
  */
- export function getCanvas() {
-	if (!canvas || !canvas.ready) {
+ export function getCanvas(): Canvas {
+	if (!(canvas instanceof Canvas) || !canvas.ready) {
 		throw new Error("Canvas Is Not Initialized");
 	}
 	return canvas;
@@ -70,7 +70,7 @@ Hooks.once('init', async () => {
   });
 
 	// Assign custom classes and constants here
-			
+
 	// Preload Handlebars templates
 
 	// Register custom sheets (if any)
@@ -96,8 +96,11 @@ Hooks.once('ready', () => {
     return;
   }
 
+  //@ts-ignore
   libWrapper.register(MODULE_NAME, 'ControlsLayer.prototype.drawDoors', ControlsLayerPrototypeDrawDoorsHandler, 'WRAPPER');
+  //@ts-ignore
   //libWrapper.register(MODULE_NAME, 'Wall.prototype._onModifyWall', WallPrototypeOnModifyWallHandler, 'WRAPPER');
+  //@ts-ignore
   libWrapper.register(MODULE_NAME, 'WallsLayer.prototype.activate', WallsLayerPrototypeActivate, 'WRAPPER');
 
 });
@@ -122,11 +125,11 @@ export const ControlsLayerPrototypeDrawDoorsHandler = async function (wrapped, .
     }
     let dc = doors.addChild(new DoorControl(w));
     if(game.settings.get(MODULE_NAME,'enabled')===true){
-      dc.visible = true; 
+      dc.visible = true;
     }else {
       dc.visible = false; // Start door controls as initially not visible and reveal them later
     }
-    
+
     if(dc.transform.scale){
       await dc.draw();
     }
@@ -140,7 +143,7 @@ export const ControlsLayerPrototypeDrawDoorsHandler = async function (wrapped, .
   return wrapped(...args);
 };
 
-// THERE IS SOME STRANGE NOT RESOLVABLE ERROR BUT IT?S SEEMS NOT NEEDED FOPR THE SCOPE OF THE MODULE
+// THERE IS SOME STRANGE NOT RESOLVABLE ERROR BUT IT?S SEEMS NOT NEEDED FOR THE SCOPE OF THE MODULE
 // export const WallPrototypeOnModifyWallHandler = async function (wrapped, ...args) {
 //   if(getCanvas()){
 //     const state = args[0];

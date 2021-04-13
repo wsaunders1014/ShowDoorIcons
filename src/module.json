@@ -48,7 +48,7 @@
 
   ],
   "esmodules": [
-    "showdooricons.js"
+    "module/showdooricons.js"
   ],
   "styles": [
   ],
