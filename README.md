@@ -2,7 +2,11 @@
 
 # ShowDoorIcons
 
-Forces Door Controls to remain visible on the Wall Layer. 
+Forces Door Controls to remain visible on the Wall Layer.
+
+## THIS REPOSITORY IS OFFICIAL ABBANDONED
+
+## THIS FUNCTIONALITY WILL BEEN DEVELOPED HERE [FoundryVTT Arms Reach](https://github.com/p4535992/foundryvtt-arms-reach)
 
 ## Installation
 
