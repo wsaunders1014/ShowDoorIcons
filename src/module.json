@@ -1,0 +1,69 @@
+{
+  "name": "showdooricons",
+  "title": "Show Door Controls",
+  "description": "Forces Door Controls to remain visible on wall layer for easier visibilty. ",
+  "authors": [
+    {
+      "name":"Will Saunders",
+      "email":"willsaunders1014@gmail.com" 
+    }
+  ],
+  "version": "1.0.3",
+  "author": "Will Saunders",
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "./packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "scripts": [
+
+  ],
+  "esmodules": [
+    "module/showdooricons.js"
+  ],
+  "styles": [
+  ],
+  "url": "https://github.com/wsaunders1014/showdooricons",
+  "manifest": "https://raw.githubusercontent.com/wsaunders1014/showdooricons/main/src/module.json",
+  "download": "https://raw.githubusercontent.com/wsaunders1014/showdooricons/main/package/showdooricons-v1.0.3.zip",
+  "minimumCoreVersion": "0.7.6",
+  "compatibleCoreVersion": "0.7.9",
+  "changelog": "https://raw.githubusercontent.com/wsaunders1014/showdooricons/main/changelog.md",
+  "bugs": "https://github.com/wsaunders1014/showdooricons/issues",
+  "allowBugReporter": true,
+  "dependencies": [
+    {
+       "name": "lib-wrapper"
+    }
+  ]
+
+}
